@@ -8,7 +8,7 @@
             @include('common.partials._alert')
         </div>
         <div class="card-body">
-            <div class="col-md-12">
+            <div class="col-md-12 row">
                 <div class="form-group">
                     <h6>Basic Information</h6>
                 </div>
