@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEducationsTable extends Migration
+class CreateUserDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +14,17 @@ class CreateEducationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('educations', function (Blueprint $table) {
+        Schema::create('user_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->enum('degree_type', array_values(BaseConstants::DEGREE_TYPE));
-            $table->unsignedDecimal('average_percentage');
-            $table->string('institute_name');
-            $table->string('field_study');
-            $table->date('start_date');
-            $table->date('end_date')->nullable();
+            $table->string('bio');
+            $table->enum('gender', array_values(BaseConstants::GENDER));
+            $table->string('city');
+            $table->string('resume')->nullable();
+            $table->string('stackoverflow_id')->nullable();
+            $table->string('github_id')->nullable();
+            $table->string('linked_in')->nullable();
+            $table->string('phone_number');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
@@ -36,6 +38,6 @@ class CreateEducationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('educations');
+        Schema::dropIfExists('user_details');
     }
 }
