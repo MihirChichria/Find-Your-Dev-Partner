@@ -14,6 +14,7 @@
 		<link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css">
         <!--end::Global Theme Styles-->
         <link rel="shortcut icon" href="{{ asset('assets/images/logos/favicon.png') }}" />
 
@@ -52,7 +53,7 @@
                     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
                         <!--begin::Entry-->
                         <div class="d-flex flex-column-fluid">
-                            <div class="{{!empty($class)?$class:'container'}}" @yield('width')>
+                            <div class="{{!empty($class)?$class:'container-sm'}}" @yield('width')>
                                 @yield('content')
                             </div>
                         </div>
