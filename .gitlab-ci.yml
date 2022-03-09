@@ -1,0 +1,64 @@
+stages:
+  - preparation
+  - formatting
+  - test
+
+image: lorisleiva/laravel-docker:latest
+
+cache:
+  key: "master-composer"
+
+composer:
+  stage: preparation
+  script:
+    - php -v
+    - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+    - cp .env.example .env
+    - php artisan key:generate
+    - php artisan storage:link
+    - php artisan migrate
+  artifacts:
+    paths:
+      - vendor/
+      - .env
+    expire_in: 1 days
+    when: always
+  cache:
+    paths:
+      - vendor/
+
+yarn:
+  stage: preparation
+  script:
+    - yarn --version
+    - yarn install --pure-lockfile
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 days
+    when: always
+  cache:
+    paths:
+      - node_modules/
+
+codestyle:
+  stage: formatting
+  image: lorisleiva/laravel-docker
+  script:
+    - phpcs --standard=PSR12 --extensions=php app
+  dependencies: []
+
+phpcpd:
+  stage: formatting
+  script:
+    - test -f phpcpd.phar || curl -L https://phar.phpunit.de/phpcpd.phar -o phpcpd.phar
+    - php phpcpd.phar app/ --min-lines=30
+  dependencies: []
+  cache:
+    paths:
+      - phpcpd.phar
+
+phpunit:
+  stage: test
+  script:
+    - phpunit --coverage-text --colors=never
