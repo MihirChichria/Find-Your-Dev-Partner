@@ -18,7 +18,7 @@ class CreateUserDetailsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('bio');
-            $table->enum('gender', BaseConstants::GENDER);
+            $table->enum('gender', array_values(BaseConstants::GENDER));
             $table->string('city');
             $table->string('resume')->nullable();
             $table->string('stackoverflow_id')->nullable();

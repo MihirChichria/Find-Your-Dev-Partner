@@ -17,7 +17,7 @@ class CreateEducationsTable extends Migration
         Schema::create('educations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->enum('degree_type', BaseConstants::DEGREE_TYPE);
+            $table->enum('degree_type', array_values(BaseConstants::DEGREE_TYPE));
             $table->unsignedDecimal('average_percentage');
             $table->string('institute_name');
             $table->string('field_study');
