@@ -7,6 +7,7 @@ use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Project;
 use App\Models\Skill;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Exception;
@@ -31,20 +32,26 @@ class ProfileController extends Controller
                 $user->linked_in = $createProfileRequest->linked_in;
                 $user->phone_number = $createProfileRequest->phone_number;
                 foreach ($createProfileRequest->education as $education) {
+                    $education['user_id'] = $user->id;
+                    $education['start_date'] = $education['start_date'] ? Carbon::parse($education['start_date'])->format('Y-m-d') : null;
+                    $education['end_date'] = $education['end_date'] ? Carbon::parse($education['start_date'])->format('Y-m-d') : null;
                     Education::persistEducation($education);
                 }
                 foreach ($createProfileRequest->experience as $experience) {
+                    $experience['user_id'] = $user->id;
+                    $experience['start_date'] = $experience['start_date'] ? Carbon::parse($experience['start_date'])->format('Y-m-d') : null;
+                    $experience['end_date'] = $experience['end_date'] ? Carbon::parse($experience['start_date'])->format('Y-m-d') : null;
                     Experience::persistExperience($experience);
                 }
-                foreach ($createProfileRequest->project as $project) {
-                    Project::persistProject($project);
-                }
-                foreach ($createProfileRequest->skills as $skill) {
-                    Skill::persistSkill($skill);
+                if ($createProfileRequest->skills){
+                    $user->skills()->attach($createProfileRequest->skills);
                 }
             });
+            session()->flash('success', 'Profile Updated Successfully');
+            return redirect(route('dashboard'));
         } catch (Exception $e) {
-            dd($e);
+            session()->flash('error', 'Cannot Update Profile');
+            return redirect(route('dashboard'));
         }
     }
 }

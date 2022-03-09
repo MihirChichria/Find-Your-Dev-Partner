@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 class Education extends BaseModel
 {
     use HasFactory;
+    protected $table="educations";
 
     public static function persistEducation(array $data): Education
     {
@@ -32,7 +33,7 @@ class Education extends BaseModel
     public static function getCreateValidationRules(string $nameExtension = '', bool $withChildRules = true): array
     {
         return [
-            $nameExtension.'degree_type' => 'required|in:'.array_values(BaseConstants::DEGREE_TYPE),
+            $nameExtension.'degree_type' => 'required|in:'.implode(',',array_values(BaseConstants::DEGREE_TYPE)),
             $nameExtension.'average_percentage' => 'required',
             $nameExtension.'institute_name' => 'required',
             $nameExtension.'field_study' => 'required',
@@ -44,7 +45,7 @@ class Education extends BaseModel
     public static function getUpdateValidationRules(string $nameExtension = '', int $id = 0, bool $withChildRules = true): array
     {
         return [
-            $nameExtension.'degree_type' => 'required|in:'.BaseConstants::DEGREE_TYPE,
+            $nameExtension.'degree_type' => 'required|in:'.implode(',',array_values(BaseConstants::DEGREE_TYPE)),
             $nameExtension.'average_percentage' => 'required',
             $nameExtension.'institute_name' => 'required',
             $nameExtension.'field_study' => 'required',

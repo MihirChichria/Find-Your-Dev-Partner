@@ -30,7 +30,6 @@ class Experience extends BaseModel
     public static function getCreateValidationRules(string $nameExtension = '', bool $withChildRules = true): array
     {
         return [
-            $nameExtension.'user_id' => 'required|exists:users,id',
             $nameExtension.'company_name' => 'required',
             $nameExtension.'job_role' => 'required',
             $nameExtension.'job_description' => 'required',
