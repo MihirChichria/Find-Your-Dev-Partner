@@ -20,16 +20,19 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="name">Full Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="=name" name="name" placeholder="Enter Full Name"/>
+                            <input
+                                value="{{$user->name}}"
+                                type="text" class="form-control" id="=name" name="name" placeholder="Enter Full Name"/>
                         </div>
                     </div>
+{{--                    {{dd($user->gender)}}--}}
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="gender">Select Your Gender <span class="text-danger">*</span></label>
                             <select name="gender" id="gender" class="select2 form-control">
                                 <option value="" selected>Select Gender</option>
                                 @foreach(\App\Helpers\Constants\BaseConstants::GENDER as $key=>$val)
-                                <option value="{{$val}}">{{$key}}</option>
+                                    <option {{$userDetails->gender && $userDetails->gender == $val ? 'selected' : ''}} value="{{$val}}">{{$key}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -40,7 +43,7 @@
                         <div class="form-group">
                             <label for="email">Email <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="email"
-                                   value="{{old('email')}}"
+                                   value="{{old('email', $user->email)}}"
                                    name="email" placeholder="Enter Your Email"/>
                         </div>
                     </div>
@@ -48,7 +51,7 @@
                         <div class="form-group">
                             <label for="phone_number">Phone Number <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="phone_number"
-                                   value="{{old('phone_number')}}"
+                                   value="{{old('phone_number', $userDetails->phone_number)}}"
                                    name="phone_number" placeholder="Enter Your Phone Number"/>
                         </div>
                     </div>
@@ -58,7 +61,7 @@
                         <div class="form-group">
                             <label for="city">City <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="city"
-                                   value="{{old('city')}}"
+                                   value="{{old('city', $userDetails->city)}}"
                                    name="city" placeholder="Enter Your City"/>
                         </div>
                     </div>
@@ -67,7 +70,7 @@
                             <label for="stackoverflow_id">Stackoverflow</label>
                             <input type="text" class="form-control"
                                    id="stackoverflow_id" name="stackoverflow_id"
-                                   value="{{old('stackoverflow_id')}}"
+                                   value="{{old('stackoverflow_id', $userDetails->stackoverflow_id)}}"
                                    placeholder="Enter Your Stackoverflow"/>
                         </div>
                     </div>
@@ -77,7 +80,7 @@
                         <div class="form-group">
                             <label for="github_id">Github/Gitlab</label>
                             <input type="text" class="form-control" id="github_id"
-                                   value="{{old('github_id')}}"
+                                   value="{{old('github_id', $userDetails->github_id)}}"
                                    name="github_id" placeholder="Enter Your Git Link"/>
                         </div>
                     </div>
@@ -85,7 +88,7 @@
                         <div class="form-group">
                             <label for="linked_in">LinkedIn</label>
                             <input type="text" class="form-control"
-                                   value="{{old('linked_in')}}"
+                                   value="{{old('linked_in', $userDetails->linked_in)}}"
                                    id="linked_in" name="linked_in" placeholder="Enter Your LinkedIn Id"/>
                         </div>
                     </div>
@@ -101,7 +104,7 @@
                         <div class="form-group">
                             <label for="bio">Bio <span class="text-danger">*</span></label>
                             <textarea name="bio" id="bio" cols="30" rows="5" class="form-control"
-                                      placeholder="Enter Your Bio">{{old('bio')}}</textarea>
+                                      placeholder="Enter Your Bio">{{old('bio', $userDetails->bio)}}</textarea>
                         </div>
                     </div>
                 </div>
@@ -116,7 +119,6 @@
                 </div>
                 <div class="row">
                     <hr style="width:100%">
-
                 </div>
 
 
@@ -124,6 +126,8 @@
 
                 <div class="kt_docs_repeater_row">
                     <div data-repeater-list="education">
+                        @if(! $user->education)
+
                         <div data-repeater-item class="form-group row mb-5 repeater-item">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -188,6 +192,74 @@
                                 </a>
                             </div>
                         </div>
+                        @else
+                            @foreach($user->education as $education)
+                                <div data-repeater-item class="form-group row mb-5 repeater-item">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="gender">Degree Type <span class="text-danger">*</span></label>
+                                            <select name="degree_type" id="degree_type" class="form-control" data-kt-repeater="select2">
+                                                <option value="" selected>Select Degree</option>
+                                                @foreach(\App\Helpers\Constants\BaseConstants::DEGREE_TYPE as $key=>$value)
+                                                    <option {{$education->degree_type == $value ? 'selected' : ''}} value="{{$value}}">{{$key}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="institute_name">Educational Institution <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="institute_name"
+                                                   name="institute_name" value="{{old('institute_name', $education->institute_name)}}"
+                                                   placeholder="Enter Your Institute Name"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="field_study">Field Of Study <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="field_study"
+                                                   name="field_study" value="{{old('field_study', $education->institute_name)}}"
+                                                   placeholder="Enter Your Field Of Study"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="average_percentage">Average Percentage <span class="text-danger">*</span></label>
+                                            <input type="number" name="average_percentage" id="average_percentage"
+                                                   placeholder="Enter Your Average Percentage"
+                                                   value="{{old('average_percentage', $education->average_percentage)}}"
+                                                   class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 date" >
+                                        <label for="start_date">Start Date</label>
+                                        <input data-provide="datepicker"
+                                               class="form-control start_date"
+                                               placeholder="Start date"
+                                               name="start_date"
+                                               value="{{old('start_date', $education->start_date)}}"
+                                               id="start_date"
+                                               required/>
+                                    </div>
+                                    <div class="form-group col-md-6 date" >
+                                        <label for="end_date">End Date</label>
+                                        <input data-provide="datepicker"
+                                               class="end_date form-control"
+                                               placeholder="End date"
+                                               name="end_date"
+                                               value="{{old('end_date', $education->end_date)}}"
+                                               id="end_date"
+                                               required/>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="javascript:;" data-repeater-delete
+                                           class="btn btn-sm btn-light-danger mt-3 mt-md-9 remove-subject-metadata">
+                                            <i class="la la-trash-o fs-3"></i>Delete
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                     <div class="form-group mt-7">
                         <a href="javascript:;" data-repeater-create
@@ -207,7 +279,7 @@
                                     <select name="skills[]" id="skills"
                                             class="select2 form-control" multiple="multiple">
                                         @foreach(\App\Models\Skill::all() as $skill)
-                                            <option value="{{$skill->id}}">{{$skill->name}}</option>
+                                            <option {{in_array($skill->id, $user->skills->pluck('id')->toArray()) ? 'selected' : ''}} value="{{$skill->id}}">{{$skill->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -219,6 +291,7 @@
                 <h5>Experience</h5>
                 <div class="kt_docs_repeater_row_exp">
                     <div data-repeater-list="experience">
+                        @if(! $user->experience)
                         <div data-repeater-item class="form-group row mb-5 repeater-item">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -273,6 +346,63 @@
                                 </a>
                             </div>
                         </div>
+                        @else
+                            @foreach($user->experience as $experience)
+                                <div data-repeater-item class="form-group row mb-5 repeater-item">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="company_name">Company Name</label>
+                                            <input type="text" class="form-control" id="company_name"
+                                                   name="company_name"  value="{{old('company_name', $experience->company_name)}}"
+                                                   placeholder="Enter Your Company Name"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="job_role">Job Role</label>
+                                            <input type="text" class="form-control" id="job_role"
+                                                   name="job_role"  value="{{old('job_role', $experience->job_role)}}"
+                                                   placeholder="Enter Your Job Role"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="job_description">Job Description</label>
+                                            <textarea name="job_description" id="job_description" cols="30" rows="5"
+                                                      class="form-control"
+                                                      placeholder="Enter Your Job Description">{{old('job_description', $experience->job_description)}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 date" >
+                                        <label for="start_date">Start Date</label>
+                                        <input data-provide="datepicker"
+                                               class="form-control start_date"
+                                               placeholder="Start Date"
+                                               name="start_date"
+                                               value="{{old('start_date', $experience->start_date)}}"
+                                               id="start_date"
+                                               required/>
+                                    </div>
+                                    <div class="form-group col-md-6 date" >
+                                        <label for="end_date">End Date</label>
+                                        <input data-provide="datepicker"
+                                               class="form-control end_date"
+                                               placeholder="End Date"
+                                               name="end_date"
+                                               value="{{old('end_date', $experience->end_date)}}"
+                                               id="end_date"
+                                               required/>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <a href="javascript:;" data-repeater-delete
+                                           class="btn btn-sm btn-light-danger mt-3 mt-md-9 remove-subject-metadata">
+                                            <i class="la la-trash-o fs-3"></i>Delete
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                     <div class="form-group mt-7">
                         <a href="javascript:;" data-repeater-create

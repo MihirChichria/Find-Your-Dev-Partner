@@ -24,6 +24,16 @@ class ProfileController extends Controller
         try {
             DB::transaction(function () use ($createProfileRequest) {
                 $user = auth()->user();
+                $user->details()->updateOrCreate([
+                    'user_id' => $user->id,
+                    'bio'=>$createProfileRequest->bio,
+                    'gender' => $createProfileRequest->gender,
+                    'city' => $createProfileRequest->city,
+                    'stackoverflow_id' => $createProfileRequest->stackoverflow_id,
+                    'github_id' => $createProfileRequest->github_id,
+                    'linked_in' => $createProfileRequest->linked_in,
+                    'phone_number' => $createProfileRequest->phone_number
+                ]);
                 $user->bio = $createProfileRequest->bio;
                 $user->gender = $createProfileRequest->gender;
                 $user->city = $createProfileRequest->city;

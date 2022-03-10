@@ -46,8 +46,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function details()
+    {
+        return $this->hasOne(UserDetails::class);
+    }
+
     public function skills()
     {
         return $this->belongsToMany(Skill::class, 'user_skill');
+    }
+
+    public function education()
+    {
+        return $this->hasMany(Education::class);
+    }
+
+    public function experience()
+    {
+        return $this->hasMany(Experience::class);
     }
 }
