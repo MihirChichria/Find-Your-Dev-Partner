@@ -15,7 +15,7 @@ class UserDetails extends BaseModel
         return [
             'user_id' => 'required|exists:users,id',
             'bio' => 'required',
-            'gender' => 'required|in:'.BaseConstants::GENDER,
+            'gender' => 'required|in:'.implode(',',array_values(BaseConstants::GENDER)),
             'city' => 'required',
             'phone_number' => 'required'
         ];

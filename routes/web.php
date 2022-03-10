@@ -9,5 +9,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('profile', [HomeController::class, 'profile'])->name('profile');
     Route::get('view-profile', [HomeController::class, 'viewProfile'])->name('view-profile');
+    Route::post('profile', [\App\Http\Controllers\ProfileController::class, 'store'])->name('profile-store');
+
 });
 
