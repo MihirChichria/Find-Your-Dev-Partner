@@ -1,6 +1,6 @@
 @extends('layouts.auth-app')
 
-@section('title', 'Family Portfolio | Register')
+@section('title', 'Find Dev Partner | Register')
 
 @section('content')
     <!--begin::Login-->
@@ -9,9 +9,7 @@
             <div class="login-form text-center p-7 position-relative overflow-hidden w-50">
                 <!--begin::Login Header-->
                 <div class="d-flex flex-center mb-15">
-                    <a href="#">
-                        <img alt="Logo" src="{{ asset('assets/images/logos/pulse.png') }}" width="200" style="margin-left: 3rem"/>
-                    </a>
+
                 </div>
                 <!--end::Login Header-->
                 <!--begin::Login Sign in form-->
@@ -33,13 +31,6 @@
                         </div>
                         <div class="form-group mb-5">
                             <input class="form-control h-auto form-control-solid py-4 px-8" type="password" placeholder="Confirm Password" name="password_confirmation" />
-                        </div>
-                        <div class="form-group mb-5 text-left">
-                            <label class="checkbox m-0">
-                            <input type="checkbox" name="agree" />I Agree the
-                            <a href="#" class="font-weight-bold">terms and conditions</a>.
-                            <span></span></label>
-                            <div class="form-text text-muted text-center"></div>
                         </div>
                         <div class="form-group d-flex flex-wrap flex-center mt-10">
                             <button id="kt_login_signup_submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-2">Sign Up</button>

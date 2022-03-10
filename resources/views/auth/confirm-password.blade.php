@@ -1,6 +1,6 @@
 @extends('layouts.auth-app')
 
-@section('title', 'Family Portfolio | Confirm Password')
+@section('title', 'Find Dev Partner | Confirm Password')
 
 @section('content')
     <!--begin::Login-->
@@ -9,9 +9,7 @@
             <div class="login-form text-center p-7 position-relative overflow-hidden w-50">
                 <!--begin::Login Header-->
                 <div class="d-flex flex-center mb-15">
-                    <a href="#">
-                        <img alt="Logo" src="{{ asset('assets/images/logos/pulse.png') }}" width="200" style="margin-left: 3rem"/>
-                    </a>
+
                 </div>
                 <!--end::Login Header-->
                 <!--begin::Login Sign in form-->

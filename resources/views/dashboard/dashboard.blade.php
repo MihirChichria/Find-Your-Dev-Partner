@@ -1,4 +1,4 @@
-@section('title', 'Family Portfolio | Dashboard')
+@section('title', 'Find Dev Partner | Dashboard')
 
 @extends('layouts.app')
 

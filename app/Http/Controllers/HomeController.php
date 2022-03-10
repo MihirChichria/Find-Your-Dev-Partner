@@ -16,9 +16,15 @@ class HomeController extends Controller
 
     public function profile()
     {
-        return view("profile.profile");
+        $user = auth()->user();
+        $userDetails = $user->details;
+        return view("profile.profile", compact([
+            'user',
+            'userDetails'
+        ]));
     }
-    public function viewProfile(){
+    public function viewProfile()
+    {
         return view('profile.view');
     }
     public function reviewProfile()

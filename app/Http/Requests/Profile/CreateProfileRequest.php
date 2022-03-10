@@ -28,12 +28,12 @@ class CreateProfileRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            UserDetails::getCreateValidationRules(),
+//        dd($this->request);
+        return array_merge(UserDetails::getCreateValidationRules(),
             Education::getCreateValidationRules('education.*.'),
             Experience::getCreateValidationRules('experience.*.'),
             Project::getCreateValidationRules('project.*.'),
             Skill::getCreateValidationRules('skills.*.')
-        ];
+        );
     }
 }

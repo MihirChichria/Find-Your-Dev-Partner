@@ -1,6 +1,6 @@
 @extends('layouts.auth-app')
 
-@section('title', 'Family Portfolio | Login')
+@section('title', 'Find Dev Partner | Login')
 
 @section('content')
     <!--begin::Login-->
@@ -9,15 +9,12 @@
             <div class="login-form text-center p-7 position-relative overflow-hidden w-50">
                 <!--begin::Login Header-->
                 <div class="d-flex flex-center mb-15">
-                    <a href="#">
-                        <img alt="Logo" src="{{ asset('assets/images/logos/pulse.png') }}" width="200" style="margin-left: 3rem"/>
-                    </a>
                 </div>
                 <!--end::Login Header-->
                 <!--begin::Login Sign in form-->
                 <div class="login-signin">
                     <div class="mb-20">
-                        <h3>Family Sign In</h3>
+                        <h3>Find Dev Partner</h3>
                         <div class="text-muted font-weight-bold">Enter your details to login to your account:</div>
                     </div>
                     <form class="form" id="kt_login_signin_form" action="{{route('login')}}" method="post">
