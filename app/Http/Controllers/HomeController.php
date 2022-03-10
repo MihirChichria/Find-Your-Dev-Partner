@@ -21,4 +21,8 @@ class HomeController extends Controller
     public function viewProfile(){
         return view('profile.view');
     }
+    public function reviewProfile()
+    {
+        return view('profile.review');
+    }
 }

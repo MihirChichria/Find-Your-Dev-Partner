@@ -1,4 +1,4 @@
-@section('title', 'View Profile | Dashboard')
+@section('title', 'Review Profile | Dashboard')
 
 @extends('layouts.app')
 
@@ -115,6 +115,18 @@
             </div>
         </div>
         
+    </div>
+    <div class="card card-custom border-dark rounded">
+        <div class="card-body">
+            <div class="container col-md-12">
+                <div class="row">
+                    <textarea name="comment" id="comment" cols="200" rows="8" placeholder="Comment" class="p-4"></textarea>
+                </div>
+            </div>
+            <div class="col-md-12 mt-4">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </div>
     </div>
 @endsection
 
