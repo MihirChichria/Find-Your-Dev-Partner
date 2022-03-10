@@ -19,19 +19,19 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="nav-item mr-3">
-                        <a href="#" class="nav-link py-4 px-6" data-toggle="tab" data-target="#kt_header_tab_2" role="tab">Reports</a>
-                    </li>
+{{--                    <li class="nav-item mr-3">--}}
+{{--                        <a href="#" class="nav-link py-4 px-6" data-toggle="tab" data-target="#kt_header_tab_2" role="tab">Reports</a>--}}
+{{--                    </li>--}}
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="nav-item mr-3">
-                        <a href="#" class="nav-link py-4 px-6" data-toggle="tab" data-target="#kt_header_tab_2" role="tab">Orders</a>
-                    </li>
+{{--                    <li class="nav-item mr-3">--}}
+{{--                        <a href="#" class="nav-link py-4 px-6" data-toggle="tab" data-target="#kt_header_tab_2" role="tab">Orders</a>--}}
+{{--                    </li>--}}
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="nav-item mr-3">
-                        <a href="#" class="nav-link py-4 px-6" data-toggle="tab" data-target="#kt_header_tab_2" role="tab">Help Center</a>
-                    </li>
+{{--                    <li class="nav-item mr-3">--}}
+{{--                        <a href="#" class="nav-link py-4 px-6" data-toggle="tab" data-target="#kt_header_tab_2" role="tab">Help Center</a>--}}
+{{--                    </li>--}}
                     <!--end::Item-->
                 </ul>
                 <!--begin::Tab Navs-->
@@ -102,6 +102,16 @@
                                 <li class="menu-item menu-item-active" aria-haspopup="true">
                                     <a href="/" class="menu-link">
                                         <span class="menu-text">Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item menu-item-active" aria-haspopup="true">
+                                    <a href="{{route('profile')}}" class="menu-link">
+                                        <span class="menu-text">Edit Profile</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item menu-item-active" aria-haspopup="true">
+                                    <a href="{{route('view-profile')}}" class="menu-link">
+                                        <span class="menu-text">View Profile</span>
                                     </a>
                                 </li>
 {{--                                <li class="menu-item" aria-haspopup="true">--}}

@@ -32,7 +32,7 @@
                             <select name="gender" id="gender" class="select2 form-control">
                                 <option value="" selected>Select Gender</option>
                                 @foreach(\App\Helpers\Constants\BaseConstants::GENDER as $key=>$val)
-                                    <option {{$userDetails->gender && $userDetails->gender == $val ? 'selected' : ''}} value="{{$val}}">{{$key}}</option>
+                                    <option {{$userDetails && $userDetails->gender && $userDetails->gender == $val ? 'selected' : ''}} value="{{$val}}">{{$key}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <label for="phone_number">Phone Number <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="phone_number"
-                                   value="{{old('phone_number', $userDetails->phone_number)}}"
+                                   value="{{old('phone_number', $userDetails->phone_number ?? null)}}"
                                    name="phone_number" placeholder="Enter Your Phone Number"/>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                         <div class="form-group">
                             <label for="city">City <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="city"
-                                   value="{{old('city', $userDetails->city)}}"
+                                   value="{{old('city', $userDetails->city ?? null)}}"
                                    name="city" placeholder="Enter Your City"/>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                             <label for="stackoverflow_id">Stackoverflow</label>
                             <input type="text" class="form-control"
                                    id="stackoverflow_id" name="stackoverflow_id"
-                                   value="{{old('stackoverflow_id', $userDetails->stackoverflow_id)}}"
+                                   value="{{old('stackoverflow_id', $userDetails->stackoverflow_id ?? null)}}"
                                    placeholder="Enter Your Stackoverflow"/>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                         <div class="form-group">
                             <label for="github_id">Github/Gitlab</label>
                             <input type="text" class="form-control" id="github_id"
-                                   value="{{old('github_id', $userDetails->github_id)}}"
+                                   value="{{old('github_id', $userDetails->github_id ?? null)}}"
                                    name="github_id" placeholder="Enter Your Git Link"/>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                         <div class="form-group">
                             <label for="linked_in">LinkedIn</label>
                             <input type="text" class="form-control"
-                                   value="{{old('linked_in', $userDetails->linked_in)}}"
+                                   value="{{old('linked_in', $userDetails->linked_in ?? null)}}"
                                    id="linked_in" name="linked_in" placeholder="Enter Your LinkedIn Id"/>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                         <div class="form-group">
                             <label for="bio">Bio <span class="text-danger">*</span></label>
                             <textarea name="bio" id="bio" cols="30" rows="5" class="form-control"
-                                      placeholder="Enter Your Bio">{{old('bio', $userDetails->bio)}}</textarea>
+                                      placeholder="Enter Your Bio">{{old('bio', $userDetails->bio ?? null)}}</textarea>
                         </div>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
 
                 <div class="kt_docs_repeater_row">
                     <div data-repeater-list="education">
-                        @if(! $user->education)
+                        @if($user->education && $user->education->count() == 0)
 
                         <div data-repeater-item class="form-group row mb-5 repeater-item">
                             <div class="col-md-6">
@@ -291,7 +291,7 @@
                 <h5>Experience</h5>
                 <div class="kt_docs_repeater_row_exp">
                     <div data-repeater-list="experience">
-                        @if(! $user->experience)
+                        @if($user->experience && $user->experience->count() == 0)
                         <div data-repeater-item class="form-group row mb-5 repeater-item">
                             <div class="col-md-6">
                                 <div class="form-group">

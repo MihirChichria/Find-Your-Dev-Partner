@@ -12,7 +12,7 @@
                 <div class="card-body rounded bg-grey text-center bg-danger text-white">
                     <span><i class="fa fa-brands fa-github fa-2x text-white btn"></i></span>
                     <h2 class="card-title"><b>No. of Developers</b></h2>
-                    <h3>14</h3>
+                    <h3>140</h3>
                 </div>
             </div>
             <div class="col-md-4">
@@ -35,7 +35,7 @@
         <div class="m-4">
             <table class="table table-borderless">
                 <thead>
-                <tr>                    
+                <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Skills</th>
                     <th scope="col">Rating</th>
